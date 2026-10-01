@@ -16,29 +16,37 @@ void Add(vector<Student*> students) {
   char last[10];
   int id = 0;
   float gpa = 0.0;
+  Student student;
   
   cout << "What is the students first name?: ";
-  cin.get(first, 10);
-  cin.get();
+  cin.getline(student.first, 10);
+   //  student.first = first;
   
   cout << "What is the students last name?: ";
-  cin.get(last, 10);
-  cin.get();
+  cin.getline(student.last, 10);
+  //  student.last = last;
 
   cout << "What is the students id?: ";
   cin >> id;
-
+  student.id = id;
+  
   cout << "What is the students gpa?: ";
   cin >> gpa;
+  student.gpa = gpa;
 
-  //Student* student = Student{first, last, id, gpa};
-  
-  
+  cin.clear();
+  students.push_back(&student);
   
 }
 
-void Print() {
-
+void Print(vector<Student*> &students) {
+  for (vector<Student*>::iterator it = students.begin(); it != students.end(); it++)  {
+    cout << (*it)->first << endl;
+    cout << (*it)->last << endl;
+    cout << (*it)->id << endl;
+    cout << (*it)->gpa << endl;
+    
+  }
 }
 
 void Delete() {
@@ -52,15 +60,14 @@ int main() {
   
   while (true) {
     cout << "Enter a command: ";
-    cin.get(input, 7);
-    cin.get();
+    cin.getline(input, 7);
     
 
     if (!strcmp(input, "ADD")) {
       Add(students);
     }
     else if (!strcmp(input, "PRINT")) {
-      
+      Print(students);
     }
     else if (!strcmp(input, "DELETE")) {
 
